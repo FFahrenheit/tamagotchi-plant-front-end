@@ -1,0 +1,61 @@
+<div class="row mx-1">
+    <div class="card card-login mx-auto text-center mt-5 shadow p-3 mb-5 bg-white rounded login-card">
+        <div class="card-body">
+            <div class="alert alert-dismissible py-3" style="text-align:center;" id="alert">
+                <span id="alert-message"></span>
+                <a href="#" class="close" onclick="$('#alert').hide();">&times;</a>
+            </div>
+            <h1 class="title">
+                <i class="fas fa-seedling mx-3"></i>
+            </h1>
+            <h2 class="title">
+                Spathiphy
+            </h2>
+            <br>
+            <h4>
+                Inicie sesión para acceder al sitio
+            </h4>
+            <br>
+            <form id="login" class="mx-3 login">
+                <div class="form-group">
+                    <label for="">Nombre de usuario:</label>
+                    <font color="red">*</font>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="Ingresa tu usuario"
+                        class="form-control input-login"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="">Contraseña:</label>
+                    <font color="red">*</font>
+                    <div class="input-group">
+                        <input
+                            name="password"
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Escriba su contraseña"
+                            class="form-control input-login"
+                            required
+                        >
+                    </div>
+                </div>
+                <span class="login-navigate">
+                    ¿No tienes cuenta?
+                    <a href="register.html">
+                        Regístrate
+                    </a>
+                </span>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-login btn-primary px-5 login btn-lg py-1">
+                        Iniciar sesión
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

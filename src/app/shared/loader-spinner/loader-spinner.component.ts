@@ -22,7 +22,7 @@ export class LoaderSpinnerComponent implements OnDestroy {
         }else if(event instanceof NavigationEnd ||
           event instanceof NavigationCancel || 
           event instanceof NavigationEnd){
-            this.isSpinnerVisible = true;
+            this.isSpinnerVisible = false;
         }
       },
       error: () => this.isSpinnerVisible = false
