@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+html, body{
+    font-family: 'Oxygen', sans-serif;
+    max-width: 100%;
+}
+
+.click:hover{
+    cursor: pointer;
+}
+
+$green-color: rgb(0, 77, 0);
+
+:root{
+    --green-color: rgb(0, 77, 0);
+}
