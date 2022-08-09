@@ -1,5 +1,6 @@
 import { Route } from "@angular/router";
 import { LoginComponent } from "./login/login.component";
+import { RecoverComponent } from "./recover/recover.component";
 import { RegisterComponent } from "./register/register.component";
 
 export const AuthRoutes: Route[] = [
@@ -18,6 +19,13 @@ export const AuthRoutes: Route[] = [
                 component: RegisterComponent,
                 data: {
                     title: 'Crear cuenta'
+                }
+            },
+            {
+                path: 'recover',
+                component: RecoverComponent,
+                data: {
+                    title: 'Recuperar contraseña'
                 }
             },
             {
