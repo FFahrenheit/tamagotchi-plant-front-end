@@ -24,6 +24,7 @@
 .input-login{
     background-color: rgba(0, 0, 0, 0.6);
     border-color: rgb(12, 59, 20);
+    color: rgb(174, 174, 174);
 }
 
 .input-login::placeholder{
@@ -41,6 +42,33 @@
 }
 
 .login-navigate a{
-    color: white;
+    color: rgb(207, 207, 207);
     font-weight: bolder;
+    text-decoration: none;
+    transition: all .5s;
+}
+
+.login-navigate a:hover{
+    text-decoration: underline;
+    color: white;
+    transition: all .5s;
+}
+
+.required {
+    color: red;
+    font-size: 120%;
+}
+
+.recover{ 
+    font-style: italic;
+}
+
+.invalid-feedback{
+    color: white;
+    font-size: 95%;
+    font-weight: bold;
+}
+
+.label{
+    font-size: 125%;
 }

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
         const customTitle = child?.snapshot.data['title'];
         
         return customTitle ?
-          ` ${ customTitle } 🌱 Tamagotchi Plant` : appTitle;
+          ` ${ customTitle } 🌻 Tamagotchi Plant` : appTitle;
       })
     ).subscribe( (newTitle : string) => this.titleService.setTitle(newTitle) );
   }

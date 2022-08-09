@@ -1,60 +1,77 @@
 <div class="row mx-1">
-    <div class="card card-login mx-auto text-center mt-5 shadow p-3 mb-5 bg-white rounded login-card">
+    <div class="card card-login mx-auto text-center mt-5 shadow p-3 mb-5 rounded login-card col-md-5">
         <div class="card-body">
-            <div class="alert alert-dismissible py-3" style="text-align:center;" id="alert">
-                <span id="alert-message"></span>
-                <a href="#" class="close" onclick="$('#alert').hide();">&times;</a>
+            <div class="title">
+                <h1>
+                    <i class="fas fa-seedling mx-3"></i>
+                </h1>
+                <h2>
+                    Tamagotchi Plant
+                </h2>
             </div>
-            <h1 class="title">
-                <i class="fas fa-seedling mx-3"></i>
-            </h1>
-            <h2 class="title">
-                Spathiphy
-            </h2>
             <br>
             <h4>
                 Inicie sesión para acceder al sitio
             </h4>
             <br>
-            <form id="login" class="mx-3 login">
+            <form class="mx-3 login" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="">Nombre de usuario:</label>
-                    <font color="red">*</font>
+                    <label for="username" class="label">
+                        🌼
+                        Nombre de usuario:
+                        <span class="required">*</span>
+                    </label>
                     <input
                         type="text"
-                        name="username"
-                        id="username"
+                        formControlName="username"
                         placeholder="Ingresa tu usuario"
                         class="form-control input-login"
-                        required
+                        [class]="getClass('username')"
                     >
-                </div>
-                <div class="form-group">
-                    <label for="">Contraseña:</label>
-                    <font color="red">*</font>
-                    <div class="input-group">
-                        <input
-                            name="password"
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="Escriba su contraseña"
-                            class="form-control input-login"
-                            required
-                        >
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation text-danger px-1"></i>
+                        Escribe tu usuario
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="password" class="label">
+                        🔑 Contraseña:
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-group">
+                        <input
+                            formControlName="password"
+                            type="password"
+                            placeholder="Escriba su contraseña"
+                            class="form-control input-login"
+                            [class]="getClass('password')"
+                        >
+                        <div class="invalid-feedback">
+                            <i class="fas fa-exclamation text-danger px-1"></i>
+                            Escribe tu contraseña
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <span class="login-navigate">
                     ¿No tienes cuenta?
-                    <a href="register.html">
+                    <a [routerLink]="['/auth/login']">
                         Regístrate
                     </a>
                 </span>
-                <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-login btn-primary px-5 login btn-lg py-1">
+                <br>
+                <div class="form-group my-3">
+                    <button type="submit" class="btn btn-login btn-primary px-4 login btn-lg py-1">
+                        <i class="fas fa-sign-in-alt mx-2"></i>
                         Iniciar sesión
                     </button>
                 </div>
+                <span class="login-navigate recover">
+                    <a [routerLink]="['/auth/login']">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </span>
             </form>
         </div>
     </div>
