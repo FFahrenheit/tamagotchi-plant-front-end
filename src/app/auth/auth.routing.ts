@@ -1,5 +1,6 @@
 import { Route } from "@angular/router";
 import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
 
 export const AuthRoutes: Route[] = [
     {
@@ -10,6 +11,13 @@ export const AuthRoutes: Route[] = [
                 component: LoginComponent,
                 data: {
                     title: 'Iniciar sesión'
+                }
+            },
+            {
+                path: 'sign-up',
+                component: RegisterComponent,
+                data: {
+                    title: 'Crear cuenta'
                 }
             },
             {

@@ -1,1 +1,132 @@
-<p>register works!</p>
+<div class="row mx-1">
+    <div class="card card-login mx-auto text-center mt-5 shadow p-3 mb-5 rounded login-card col-md-5">
+        <div class="card-body">
+            <div class="title">
+                <h1>
+                    <i class="fas fa-seedling mx-3"></i>
+                </h1>
+                <h2>
+                    Tamagotchi Plant
+                </h2>
+            </div>
+            <br>
+            <h4>
+                Regístrate para acceder a las funciones
+            </h4>
+            <br>
+            <form class="mx-3 login" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username" class="label">
+                        🌼
+                        Nombre de usuario:
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        formControlName="username"
+                        placeholder="Elige un nombre de usuario"
+                        class="form-control input-login"
+                        [class]="getClass('username')"
+                    >
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation text-danger px-1"></i>
+                        Selecciona tu nombre de usuario
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre" class="label">
+                        🌿
+                        Nombre:
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        formControlName="nombre"
+                        placeholder="Ingresa tu nombre"
+                        class="form-control input-login"
+                        [class]="getClass('nombre')"
+                    >
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation text-danger px-1"></i>
+                        Escribe tu nombre
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="label">
+                        📧
+                        Correo:
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        formControlName="email"
+                        placeholder="Ingresa tu correo electrónico"
+                        class="form-control input-login"
+                        [class]="getClass('email')"
+                    >
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation text-danger px-1"></i>
+                        Escribe un correo electrónico válido
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="label">
+                        🔑 Contraseña:
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-group">
+                        <input
+                            formControlName="password"
+                            type="password"
+                            placeholder="Escriba su contraseña"
+                            class="form-control input-login"
+                            [class]="getClass('password')"
+                        >
+                        <div class="invalid-feedback">
+                            <i class="fas fa-exclamation text-danger px-1"></i>
+                            Escribe una contraseña de mínimo 8 caracteres
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="label">
+                        🔐 Repetir contraseña:
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-group">
+                        <input
+                            formControlName="confirmPassword"
+                            type="password"
+                            placeholder="Vuelve a escribir tu contraseña"
+                            class="form-control input-login"
+                            [class]="getClass('confirmPassword')"
+                        >
+                        <div class="invalid-feedback">
+                            <i class="fas fa-exclamation text-danger px-1"></i>
+                            Las contraseñas no coinciden
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <span class="login-navigate">
+                    ¿Ya tienes cuenta?
+                    <a [routerLink]="['/auth/login']">
+                        Inicia sesión
+                    </a>
+                </span>
+                <br>
+                <div class="form-group my-3">
+                    <button type="submit" class="btn btn-login btn-primary px-4 login btn-lg py-1">
+                        <i class="fas fa-sign-in-alt mx-2"></i>
+                        Regístrate
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

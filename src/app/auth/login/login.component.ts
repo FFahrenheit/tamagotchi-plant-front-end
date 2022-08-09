@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     if(control.untouched){
       return '';
     }
-
     return control.valid ? 'is-valid' : 'is-invalid';
   }
 
