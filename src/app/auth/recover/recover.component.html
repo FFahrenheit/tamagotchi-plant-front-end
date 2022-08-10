@@ -12,8 +12,8 @@
             <br>
             <h4>
                 Ingrese su correo para recuperar su contraseña
+                <br>
             </h4>
-            <br>
             <form class="mx-3 login" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="email" class="label">
@@ -42,13 +42,13 @@
                     </button>
                 </div>
                 <span class="login-navigate">
-                    ¿No quieres recuperar tu contraseña?<br>
+                    <!-- ¿No quieres recuperar tu contraseña?<br>
                     <a [routerLink]="['/auth/sign-up']">
                         Regístrate
                     </a>
-                    o 
+                    o  -->
                     <a [routerLink]="['/auth/login']">
-                        Inicia sesión
+                        Volver al login
                     </a>
                 </span>
 
