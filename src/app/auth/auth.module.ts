@@ -6,6 +6,8 @@ import { AuthRoutes } from './auth.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { RecoverComponent } from './recover/recover.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,12 +15,14 @@ import { RecoverComponent } from './recover/recover.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    RecoverComponent
+    RecoverComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(AuthRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

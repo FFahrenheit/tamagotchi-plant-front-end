@@ -42,4 +42,7 @@ export class LoginComponent implements OnInit {
     return control.valid ? 'is-valid' : 'is-invalid';
   }
 
+  confirm(){
+    console.log('Umhh');
+  }
 }

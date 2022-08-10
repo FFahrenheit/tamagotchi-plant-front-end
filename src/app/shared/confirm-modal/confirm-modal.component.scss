@@ -1,0 +1,38 @@
+.m-content{
+    color: rgb(48, 48, 48);
+    font-weight: 400;
+}
+
+.m-title{
+    color: rgb(63, 63, 63);
+}
+
+.btn-disabled{
+    background-color: rgb(145, 145, 145);
+    border-color: rgb(161, 161, 161);
+}
+
+.btn-disabled:hover{
+    cursor: default;
+}
+
+.btn-disabled:focus{
+    background-color: rgb(126, 125, 125);
+    border-color: rgb(158, 158, 158);
+}
+
+.reasons{
+    margin-bottom: 0px;
+}
+
+.big-letter{
+    font-size: 20px;
+}
+
+.close{
+    margin: 0px;
+}
+
+.invisible{
+    display: none;
+}

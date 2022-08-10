@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AppRoutes } from './app.routing';
       progressAnimation: 'increasing',
       extendedTimeOut: 3000,
       closeButton: true
-    })
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
