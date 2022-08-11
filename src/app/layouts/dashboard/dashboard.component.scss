@@ -1,0 +1,257 @@
+
+.logout {
+    color: ghostwhite !important;
+}
+
+.logout:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    /* background-color: rgb(12, 59, 20) !important; */
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+.active {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (min-width: 768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.header{
+    position: sticky !important;
+    top: 0px !important; 
+    z-index: 100;
+    /* background-color: rgb(12, 59, 20) !important; */
+}
+
+.loading{
+    width: 18px;
+    height: 18px;
+    font-size: 50%;
+}
+
+.contact-email {
+    font-size: 24px;
+}
+
+.contact-email:hover{
+    -webkit-filter: brightness(70%);
+    filter: brightness(70%);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.contact-email i{
+    color: rgb(50, 138, 50);
+}
+
+.network-icon {
+    font-size: 130%;
+}
+
+.network-icon:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: white !important;
+}
+
+.links-nav {
+    font-size: 120%;
+    font-weight: 600;
+}
+
+.links-nav:hover {
+    color: rgb(189, 0, 0) !important;
+    font-weight: 900;
+}
+
+.no-decoration{
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.no-decoration:hover{
+    text-decoration: none !important;
+    color: rgb(218, 218, 218);
+}
+
+.page-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    max-height: 40px i !important;
+    padding-bottom: 5px;
+    color: white;
+    text-align: center;
+    align-content: center;
+    z-index: 1000;
+}
+
+.navbar-brand:hover {
+    color: rgb(88, 88, 88) !important;
+    transition: color 0.3s;
+}
+
+.navbar-brand{
+    transition: color 0.3s;
+}
+
+.toggle-icon{
+    font-size: 24px;
+}
+
+.toggle-icon:hover{
+    cursor: pointer;
+    color: gray;
+}
+/* 
+.full-width-div {
+    position: absolute !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: -100px !important;
+} */
+
+.plant{
+    width: 100%;
+    height: auto;
+}
+
+.temperatura{
+    color: rgb(153, 0, 0);
+}
+
+.humedad{
+    color: rgb(0, 85, 255);
+}
+
+.luminosidad{
+    color: rgb(209, 209, 0);
+}
+
