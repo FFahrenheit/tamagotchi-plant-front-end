@@ -1,0 +1,9 @@
+{
+    "/api/*":{
+        "target": "http://64.227.14.152:3000/api",
+        "secure": true,
+        "pathRewrite": { "^/api": "" },
+        "logLevel": "debug",
+        "changeOrigin": false
+    }
+}

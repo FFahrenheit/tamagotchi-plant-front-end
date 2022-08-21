@@ -68,9 +68,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app:build",
+            "proxyConfig": "proxy-local.config.json"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "tamagotchi-plant-front-end:build:production"
+              "browserTarget": "tamagotchi-plant-front-end:build:production",
+              "proxyConfig": "proxy-prod.config.json"
             },
             "development": {
               "browserTarget": "tamagotchi-plant-front-end:build:development"

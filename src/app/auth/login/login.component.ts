@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   public form : FormGroup;
 
   constructor(private toastr  : ToastrService,
-              private fb      : FormBuilder) { }
+              private fb      : FormBuilder,
+              private login   : LoginService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -23,7 +25,9 @@ export class LoginComponent implements OnInit {
 
   public async onSubmit() {
     if(this.form.valid){
-      console.log('TODO: Call to service')
+      const data = await this.login.login("","");
+
+      console.log(data);
     }else{
       this.form.markAllAsTouched();
       this.toastr.error('Por favor, rellene el formulario', 'Datos incompletos');
