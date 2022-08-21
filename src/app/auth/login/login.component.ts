@@ -25,9 +25,13 @@ export class LoginComponent implements OnInit {
 
   public async onSubmit() {
     if(this.form.valid){
-      const data = await this.login.login("","");
-
-      console.log(data);
+      try{
+        await this.login.makeLogin(this.form.value);
+        this.toastr.success("Sesión iniciada", "Éxito");
+      }catch(e : any){
+        this.toastr.error(e, "Error");
+        this.form.controls['password'].setValue('');
+      }
     }else{
       this.form.markAllAsTouched();
       this.toastr.error('Por favor, rellene el formulario', 'Datos incompletos');

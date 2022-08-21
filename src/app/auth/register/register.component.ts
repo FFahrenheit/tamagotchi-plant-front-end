@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { RegisterService } from 'src/app/services/auth/register.service';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +13,10 @@ export class RegisterComponent implements OnInit {
 
   public form : FormGroup;
 
-  constructor(private toastr  : ToastrService,
-              private fb      : FormBuilder) { }
+  constructor(private toastr    : ToastrService,
+              private fb        : FormBuilder,
+              private register  : RegisterService,
+              private router    : Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -30,7 +34,20 @@ export class RegisterComponent implements OnInit {
 
   public async onSubmit() {
     if(this.form.valid && this.passwordsMatch()){
-      console.log('TODO: Call to service')
+      try{
+        const response = await this.register.makeRegister(this.form.value);
+        if(response){
+          this.toastr.success("Usuario creado. Ahora puede iniciar sesión", "Éxito");
+          this.form.reset();
+          setTimeout(() => {
+            this.router.navigate(['auth', 'login']);
+          }, 3000);
+        }else{
+          console.error('Algo anda mal...');
+        }
+      }catch(e : any){
+        this.toastr.error(e, "Error");
+      }
     }else{
       this.form.markAllAsTouched();
       this.toastr.error('Por favor, rellene el formulario de forma válida', 'Datos incompletos');
