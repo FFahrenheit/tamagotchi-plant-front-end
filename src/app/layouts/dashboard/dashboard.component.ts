@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/auth/token.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +11,8 @@ export class DashboardComponent implements OnInit {
 
   public shown : boolean;
 
-  constructor() { }
+  constructor(private token   : TokenService,
+              private router  : Router) { }
 
   ngOnInit(): void {
     this.shown = false;
@@ -24,4 +27,8 @@ export class DashboardComponent implements OnInit {
     return `© COPYRIGHT ${new Date().getFullYear()}. TODOS LOS DERECHOS RESERVADOS.`; 
   }
 
+  public logout(){
+    this.token.resetToken();
+    this.router.navigate(['auth']);
+  }
 }

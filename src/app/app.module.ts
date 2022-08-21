@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InterceptorService } from './services/auth/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     NgbModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

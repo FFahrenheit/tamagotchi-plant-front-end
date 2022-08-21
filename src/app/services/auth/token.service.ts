@@ -19,4 +19,12 @@ export class TokenService {
     this.token = token;
     localStorage.setItem("token", token);
   }
+
+  public getToken() : string{
+    return `Bearer ${this.token}`;
+  }
+
+  public resetToken(){
+    this.setToken('');
+  }
 }
