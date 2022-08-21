@@ -38,7 +38,8 @@ export class LoginService {
         this.token.setToken(response.token);
         resolve(true);
       }catch(e : any){
-        const message = e.error['msg'] || "Server error";
+        console.warn(e);
+        const message = e['error']['msg'] || "Server error";
         reject(message);
       }
     });

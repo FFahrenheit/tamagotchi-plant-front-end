@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/services/auth/token.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
   public shown : boolean;
 
   constructor(private token   : TokenService,
-              private router  : Router) { }
+              private router  : Router,
+              private toastr   : ToastrService) { }
 
   ngOnInit(): void {
     this.shown = false;
@@ -30,5 +32,6 @@ export class DashboardComponent implements OnInit {
   public logout(){
     this.token.resetToken();
     this.router.navigate(['auth']);
+    this.toastr.info('Sesión cerrada con éxito', '¡Hasta luego!')
   }
 }

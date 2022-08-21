@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/services/auth/login.service';
 
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private toastr  : ToastrService,
               private fb      : FormBuilder,
-              private login   : LoginService) { }
+              private login   : LoginService,
+              private router  : Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
       try{
         await this.login.makeLogin(this.form.value);
         this.toastr.success("Sesión iniciada", "Éxito");
+        this.router.navigate(['plants']);
       }catch(e : any){
         this.toastr.error(e, "Error");
         this.form.controls['password'].setValue('');

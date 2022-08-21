@@ -35,7 +35,7 @@ export class InterceptorService {
             this.tokenService.resetToken();
           }
 
-          return throwError( () => new Error("Error: No se pudo autorizar con el servidor"));
+          return throwError( () => error);
         })
       )
     )

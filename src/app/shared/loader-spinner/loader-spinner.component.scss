@@ -1,3 +1,11 @@
+.preloader{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 10000;
+}
+
 .intersecting-circles-spinner,
 .intersecting-circles-spinner * {
     box-sizing: border-box;
@@ -23,7 +31,8 @@
 
 .intersecting-circles-spinner .circle {
     display: block;
-    border: 2px solid var(--green-color);
+    // border: 2px solid var(--green-color);
+    border: 2px solid rgb(67, 97, 74);
     border-radius: 50%;
     height: 100%;
     width: 100%;
