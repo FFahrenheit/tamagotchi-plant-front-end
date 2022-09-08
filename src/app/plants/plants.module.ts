@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { PlantsRoutes } from './plants.routing';
 import { PlantSelectionViewComponent } from './plant-selection-view/plant-selection-view.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -14,7 +15,11 @@ import { PlantCardComponent } from './plant-card/plant-card.component';
   ],
   imports: [
     CommonModule,
+    MatIconModule,
     RouterModule.forChild(PlantsRoutes)
+  ],
+  exports:[
+    MatIconModule
   ]
 })
 export class PlantsModule { }

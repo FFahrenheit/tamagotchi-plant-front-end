@@ -7,6 +7,20 @@
 }
 
 .card-body{
-
     padding: 10px;
+    height: 100%;
+}
+
+.card-thumbnail{
+    height: 10%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+mat-icon{
+    font-size: 100px;
+    width: fit-content;
+    height: fit-content;
 }
