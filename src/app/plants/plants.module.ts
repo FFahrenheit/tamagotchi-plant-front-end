@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PlantsRoutes } from './plants.routing';
-import { MyPlantsComponent } from './my-plants/my-plants.component';
+import { PlantSelectionViewComponent } from './plant-selection-view/plant-selection-view.component';
+import { PlantCardComponent } from './plant-card/plant-card.component';
 
 
 
 @NgModule({
   declarations: [
-    MyPlantsComponent
+    PlantSelectionViewComponent,
+    PlantCardComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,8 @@ $green-color: rgb(0, 77, 0);
 
 :root{
     --green-color: rgb(0, 77, 0);
+    --light-shadow: #f5ffff;
+    --dark-shadow: #b5c1c8;
 }
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

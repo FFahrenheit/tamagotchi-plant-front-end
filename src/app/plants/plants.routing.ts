@@ -1,5 +1,5 @@
 import { Route } from "@angular/router";
-import { MyPlantsComponent } from "./my-plants/my-plants.component";
+import { PlantSelectionViewComponent } from "./plant-selection-view/plant-selection-view.component";
 
 export const PlantsRoutes : Route[] = [
     {
@@ -7,7 +7,7 @@ export const PlantsRoutes : Route[] = [
         children: [
             {
                 path: 'dashboard',
-                component: MyPlantsComponent,
+                component: PlantSelectionViewComponent,
                 data: {
                     title: 'Mis plantas'
                 }
