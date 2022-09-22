@@ -1,1 +1,13 @@
-<p>my-plants works!</p>
+<p>
+    Testing sockets!
+</p>
+
+<ul>
+    <li *ngFor="let l of log">
+        {{ l.message || l.toString() }}
+    </li>
+</ul>
+
+<button class="btn btn-success" (click)="sendHour()">
+    Test socket
+</button>
