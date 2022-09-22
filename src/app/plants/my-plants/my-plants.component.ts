@@ -8,6 +8,7 @@ import { PlantStatusService } from 'src/app/services/sockets/plant-status.servic
 })
 export class MyPlantsComponent implements OnInit {
   public log : any[] = [];
+  public myId : string = '1';
 
   constructor(private plantsStatus : PlantStatusService) { }
 
@@ -16,10 +17,20 @@ export class MyPlantsComponent implements OnInit {
       console.log(data);
       this.log.push(data);
     });
+
+    this.plantsStatus.listen('hey').subscribe(data => {
+      console.warn(data);
+    });
+    
+    this.sendID();
   }
 
   public sendHour(){
     this.plantsStatus.emit('hour', new Date());
+  }
+
+  public sendID(){
+    this.plantsStatus.emit('id', this.myId);
   }
 
 }

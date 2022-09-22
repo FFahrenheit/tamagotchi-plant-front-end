@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PlantsRoutes } from './plants.routing';
 import { MyPlantsComponent } from './my-plants/my-plants.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,7 @@ import { MyPlantsComponent } from './my-plants/my-plants.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(PlantsRoutes)
   ]
 })
