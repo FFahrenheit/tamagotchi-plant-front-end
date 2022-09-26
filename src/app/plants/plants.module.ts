@@ -5,7 +5,8 @@ import { PlantsRoutes } from './plants.routing';
 import { PlantSelectionViewComponent } from './plant-selection-view/plant-selection-view.component';
 import { PlantCardComponent } from './plant-card/plant-card.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -16,10 +17,14 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatIconModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(PlantsRoutes)
   ],
   exports:[
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ]
 })
 export class PlantsModule { }

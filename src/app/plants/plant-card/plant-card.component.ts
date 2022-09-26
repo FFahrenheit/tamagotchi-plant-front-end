@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-plant-card',
@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlantCardComponent implements OnInit {
 
-  constructor() { }
+  spinnerDiameter = window.innerHeight / 10;
+
+  constructor() {
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.spinnerDiameter = window.innerHeight / 10;
+  }
 
   ngOnInit(): void {
   }
