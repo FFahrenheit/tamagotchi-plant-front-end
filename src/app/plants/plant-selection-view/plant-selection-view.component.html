@@ -1,5 +1,5 @@
 <div class="row main-wrapper">
     <div *ngFor="let plant of plants" class="col-md-4 plant-wrapper">
-        <app-plant-card></app-plant-card>
+        <app-plant-card [plantData]="plant" ></app-plant-card>
     </div>
 </div>
