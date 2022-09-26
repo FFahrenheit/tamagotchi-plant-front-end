@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlantService } from 'src/app/services/auth/plant.service';
 
 @Component({
   selector: 'app-plant-selection-view',
@@ -9,7 +10,9 @@ export class PlantSelectionViewComponent implements OnInit {
 
   plants = [1, 2, 3];
 
-  constructor() { }
+  constructor(plantSrv:PlantService) {
+    plantSrv.getMyPlants().subscribe(data => console.log(data));
+   }
 
   ngOnInit(): void {
   }
