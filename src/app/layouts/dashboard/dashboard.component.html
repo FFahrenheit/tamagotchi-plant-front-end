@@ -1,9 +1,10 @@
 <div class="full-width-div">
     <div class="w-100 container-fluid">
-        <div class="row bg-dark py-3 header">
+        <div class="row bg-dark header">
             <div class="col-md-4 text-light">
                 <span class="align-middle">
-                    <i class="fas fa-bars toggle-icon align-middle mx-3" (click)="toggleSidebar()" title="Mostrar / ocultar menú"></i>
+                    <i class="fas fa-bars toggle-icon align-middle mx-3" (click)="toggleSidebar()"
+                        title="Mostrar / ocultar menú"></i>
                 </span>
             </div>
             <div class="col-md-4 text-center text-light">
@@ -21,39 +22,32 @@
                 </span>
             </div>
         </div>
-        <div class="sidebar">
-            <div class="container-fluid">
-                <div id="wrapper" [ngClass]="{'toggled': shown}">
-                    <div id="sidebar-wrapper">
-                        <ul class="sidebar-nav">
-                            <li class="sidebar-brand mx-0">
-                                <a href="dashboard.html">
-                                    Control de plantas
-                                </a>
-                            </li>
-                            <li class="active">
-                                <a href="dashboard.html">Mis plantas</a>
-                            </li>
-                            <li>
-                                <a href="new-plant.html"> Registrar plantas</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="container-fluid">
-                            <router-outlet></router-outlet>
-                        </div>
-                    </div>
-                    <div style="height: 20px"></div>
-                    <footer class="footer page-footer bg-dark">
-                        <div class="container text-center">
-                            <span class="text-light">
-                                {{ getFooter () }}
-                            </span>
-                        </div>
-                    </footer>
-                </div>
+        <div id="wrapper" [ngClass]="{'toggled': shown}">
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand mx-0">
+                        <a href="dashboard.html">
+                            Control de plantas
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="dashboard.html">Mis plantas</a>
+                    </li>
+                    <li>
+                        <a href="new-plant.html"> Registrar plantas</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-fluid router-container">
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>
 </div>
+<footer class="page-footer bg-dark">
+    <div class="container text-center">
+        <span class="text-light">
+            {{ getFooter () }}
+        </span>
+    </div>
+</footer>

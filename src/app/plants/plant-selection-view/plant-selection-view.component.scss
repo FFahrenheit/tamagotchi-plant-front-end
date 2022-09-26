@@ -1,8 +1,11 @@
 .main-wrapper{
     width: 100%;
-    padding-top: 1vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .plant-wrapper{
-    height: 90vh;
+    height: 100%;
 }

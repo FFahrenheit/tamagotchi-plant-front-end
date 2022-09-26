@@ -7,11 +7,10 @@ import { PlantService } from 'src/app/services/auth/plant.service';
   styleUrls: ['./plant-selection-view.component.scss']
 })
 export class PlantSelectionViewComponent implements OnInit {
-
-  plants = [1, 2, 3];
+  plants:Array<any> = [];
 
   constructor(plantSrv:PlantService) {
-    plantSrv.getMyPlants().subscribe(data => console.log(data));
+    plantSrv.getMyPlants().subscribe(data => this.plants = data)
    }
 
   ngOnInit(): void {
