@@ -12,6 +12,9 @@ export class CameraViewerService {
 
   private streamVideoSubject: Subject<SafeUrl>;
   private addFaceSubject : Subject<string>;
+  private deleteAllFacesSubject : Subject<void>;
+  private faceDetectedSubject : Subject<void>;
+  private currentStatusSubject : Subject<string>;
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -19,6 +22,7 @@ export class CameraViewerService {
   public connect(url: string, port: number = 82): Promise<boolean> {
 
     this.WS_URL = `ws://${url}:${port}`;
+    // Probar el stream 
 
     return new Promise(async (resolve, reject) => {
       try {
@@ -40,20 +44,31 @@ export class CameraViewerService {
   }
 
   public streamVideo(): Observable<SafeUrl> {
-    let observer = new Observable<SafeUrl>();
-    observer = this.streamVideoSubject.asObservable();
-    return observer;
+    return this.streamVideoSubject.asObservable();
   }
 
   public getFaces() : Observable<string>{
-    let observer = new Observable<string>();
-    observer = this.addFaceSubject.asObservable();
-    return observer;
+    return this.addFaceSubject.asObservable();
+  }
+
+  public receiveDeleteAllFaces() : Observable<void>{
+    return this.deleteAllFacesSubject.asObservable();
+  }
+
+  public getDetectedFaces() : Observable<void>{
+    return this.faceDetectedSubject.asObservable();
+  }
+
+  public getStatusUpdates() : Observable<string>{
+    return this.currentStatusSubject.asObservable();
   }
 
   private listenToEveything() {
     this.streamVideoSubject = new Subject<SafeUrl>();
     this.addFaceSubject = new Subject<string>();
+    this.deleteAllFacesSubject = new Subject<void>();
+    this.faceDetectedSubject = new Subject<void>();
+    this.currentStatusSubject = new Subject<string>();
 
     this.ws.onmessage = (message) => {
       if (message.data instanceof Blob) {
@@ -74,7 +89,41 @@ export class CameraViewerService {
         return;
       }
 
-      
+      if(message.data == 'delete_faces'){
+        this.deleteAllFacesSubject.next();
+        return;
+      }
+
+      if(message.data == 'door_open'){
+        this.faceDetectedSubject.next();
+        return;
+      }
+
+      this.currentStatusSubject.next(message.data);
     }
+  }
+
+  public setStream(){
+    this.ws.send('stream');
+  }
+
+  public setDetectionMode(){
+    this.ws.send('detect');
+  }
+
+  public setRecognitionMode(){
+    this.ws.send('recognise');
+  }
+
+  public setRecognitionFor(person : string){
+    this.ws.send('capture:' + person);
+  }
+
+  public deleteAllFaces(){
+    this.ws.send('delete_all');
+  }
+
+  public deletePerson(person : string){
+    this.ws.send('remove:' + person);
   }
 }
