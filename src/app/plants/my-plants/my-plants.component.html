@@ -2,13 +2,19 @@
     Testing sockets!
 </p>
 
+
+<div class="container">
+    <div>
+        <img [src]="src" alt="No video">
+    </div>
+</div>
 <ul>
     <li *ngFor="let l of log">
         {{ l.message || l.toString() }}
     </li>
 </ul>
 
-<input class="form-control" type="number" [(ngModel)]="myId">
+<input class="form-control" type="text" [(ngModel)]="myId">
 
 <button class="btn btn-primary" (click)="sendID()">
     Send ID
