@@ -1,0 +1,71 @@
+<div class="main-wrapper row">
+    <div class="col-md p-3">
+        <div class="card">
+            <div class="row h-75">
+                <div class="row h-50">
+                    <div class="col-sm spinner-container temperatura">
+                        <label>temperatura</label>
+                        <mat-progress-spinner mode='determinate' value="{{temperatura}}" diameter="{{spinnerDiameter}}">
+                        </mat-progress-spinner>
+                    </div>
+                    <div class="col-sm spinner-container luminosidad">
+                        <label>luminosidad</label>
+                        <mat-progress-spinner mode='determinate' value="{{luminosidad}}" diameter="{{spinnerDiameter}}">
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+                <div class="row h-50">
+                    <div class="col-sm spinner-container tierra">
+                        <label>humedad en tierra</label>
+                        <mat-progress-spinner mode='determinate' value="{{humedad_tierra}}"
+                            diameter="{{spinnerDiameter}}">
+                        </mat-progress-spinner>
+                    </div>
+                    <div class="col-sm spinner-container humedad">
+                        <label>humedad en aire</label>
+                        <mat-progress-spinner mode='determinate' value="{{humedad_ambiente}}"
+                            diameter="{{spinnerDiameter}}">
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-4 h-25">
+                <div class="plant-state">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="row h-25 d-flex justify-content-center align-items-center">
+            <mat-icon class="header-icon">forest</mat-icon>
+        </div>
+        <div class="row h-50 p-3 d-flex justify-content-center">
+            <div class="card square d-flex justify-content-center align-items-center">
+                <img src="/assets/faces/IMG_0672.png" class="face">
+            </div>
+        </div>
+        <div class="row h-25">
+            <div class="col d-flex justify-content-center align-items-center">
+                <button class="round-btn">
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <button class="round-btn">
+                    <mat-icon>receipt_long</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <button class="round-btn">
+                    <mat-icon>videocam</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md p-3">
+        <div class="card">
+
+        </div>
+    </div>
+</div>

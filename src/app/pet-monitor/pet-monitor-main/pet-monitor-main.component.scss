@@ -1,0 +1,79 @@
+.main-wrapper{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.card{
+    background-color: rgb(228, 228, 228);
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);
+    border-radius: 10px;
+    height: 100%;
+    border: 0;
+}
+
+.spinner-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.round-btn{
+    width: 5vw;
+    height: 5vw;
+    min-width: 50px;
+    min-height: 50px;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);  
+}
+
+.round-btn:hover{
+    box-shadow: 2px 2px 4px var(--light-shadow), -2px -2px 4px var(--dark-shadow);  
+}
+
+.header-icon{
+    width: auto;
+    height: auto;
+    padding: 0;
+    font-size: 80px;
+}
+
+.face{
+    border-radius: 10px;
+}
+
+.square{
+    width: 40vh;
+}
+
+.temperatura ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #d24747;
+}
+
+.luminosidad ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #decd4a;
+}
+
+.tierra ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #885220;
+}
+
+.humedad ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #389fb9;
+}
+
+.plant-state{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;
+    border-color: rgb(186, 186, 186);
+}
+
+button > *{
+    font-size: calc(20px + 1vw);
+    padding: 0;
+    width: 100%;
+    height: auto;
+}

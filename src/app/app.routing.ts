@@ -7,6 +7,32 @@ import { DashboardComponent } from "./layouts/dashboard/dashboard.component";
 export const AppRoutes: Route[] = [
     {
         path: '',
+        component: DashboardComponent,
+        canActivate: [LoggedGuard],
+        children: [
+            {
+                path: 'plants',
+                loadChildren: () =>
+                    import('./plant-listing/plants.module').then(
+                        m => m.PlantsModule
+                    )
+            },
+            {
+                path: 'pet',
+                loadChildren: () =>
+                    import('./pet-monitor/pet-monitor.module').then(
+                        m => m.PetMonitorModule
+                    )
+            },
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'plants'
+            }
+        ]
+    },
+    {
+        path: '',
         component: BlankComponent,
         canActivate: [NotLoggedGuard],
         children: [
@@ -22,24 +48,6 @@ export const AppRoutes: Route[] = [
                 pathMatch: 'full',
                 redirectTo: 'auth' //Change to dashboard
             }]
-    },
-    {
-        path: '',
-        component: DashboardComponent,
-        canActivate: [LoggedGuard],
-        children: [
-            {
-                path: 'plants',
-                loadChildren: () =>
-                    import('./plants/plants.module').then(
-                        m => m.PlantsModule
-                    )
-            },
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'plants'
-            }
-        ]
     }
+    
 ];

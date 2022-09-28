@@ -11,9 +11,13 @@
 html, body {
     overflow-x: hidden;
     width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #wrapper {
+    height: 95%;
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -142,7 +146,11 @@ html, body {
     position: sticky !important;
     top: 0px !important; 
     z-index: 100;
-    /* background-color: rgb(12, 59, 20) !important; */
+    height: 5%;
+    max-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loading{
@@ -184,6 +192,10 @@ html, body {
     font-weight: 600;
 }
 
+.router-container{
+    height: 100%;
+}
+
 .links-nav:hover {
     color: rgb(189, 0, 0) !important;
     font-weight: 900;
@@ -200,17 +212,11 @@ html, body {
 }
 
 .page-footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    padding-top: 5px;
-    max-height: 40px i !important;
-    padding-bottom: 5px;
+    height: 3%;
     color: white;
     text-align: center;
     align-content: center;
-    z-index: 1000;
 }
 
 .navbar-brand:hover {
@@ -230,28 +236,12 @@ html, body {
     cursor: pointer;
     color: gray;
 }
-/* 
+
 .full-width-div {
-    position: absolute !important;
-    width: 100% !important;
-    left: 0 !important;
-    right: -100px !important;
-} */
+    background-color: rgb(228, 228, 228);
+    height: 97%;
+    display: flex;
+} 
 
-.plant{
-    width: 100%;
-    height: auto;
-}
 
-.temperatura{
-    color: rgb(153, 0, 0);
-}
-
-.humedad{
-    color: rgb(0, 85, 255);
-}
-
-.luminosidad{
-    color: rgb(209, 209, 0);
-}
 
