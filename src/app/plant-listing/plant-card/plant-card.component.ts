@@ -25,12 +25,14 @@ export class PlantCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.plantData);
+    let plantData = this.plantData;
+    let rec = this.plantData.last_rec;
+
     if (this.plantData) {
-      this.temperatura = this.plantData.last_rec.temperatura;
-      this.luminosidad = this.plantData.last_rec.luminosidad;
-      this.humedad_tierra = this.plantData.last_rec.humedad_tierra;
-      this.humedad_ambiente = this.plantData.last_rec.humedad_ambiente;
+      this.temperatura = (rec.temperatura-plantData.min_temp) * 100 / (plantData.max_temp - plantData.min_temp);
+      this.luminosidad = (rec.luminosidad-plantData.min_lum) * 100 / (plantData.max_lum - plantData.min_lum);
+      this.humedad_tierra = (rec.humedad_tierra-plantData.min_humt) * 100 / (plantData.max_humt - plantData.min_humt);
+      this.humedad_ambiente = (rec.humedad_ambiente-plantData.min_hum) * 100 / (plantData.max_hum - plantData.min_hum);
     }
   }
 

@@ -53,6 +53,27 @@
     align-items: center;
 }
 
+.temperatura ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #d24747;
+}
+
+.luminosidad ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #decd4a;
+}
+
+.tierra ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #885220;
+}
+
+.humedad ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #389fb9;
+}
+
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #3fb53f;
+    }
+
 .buttons-container{
     height: 10%;
     align-items: center;
