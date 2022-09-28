@@ -20,6 +20,10 @@ export class DashboardComponent implements OnInit {
     this.shown = false;
   }
 
+  onTitleClick(){
+    this.router.navigate(['/']);
+  }
+
   public toggleSidebar() : void {
     console.log('Toggled', this.shown);
     this.shown = !this.shown;
