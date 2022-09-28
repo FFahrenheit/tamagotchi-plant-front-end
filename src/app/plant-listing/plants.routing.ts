@@ -1,5 +1,5 @@
 import { Route } from "@angular/router";
-import { PlantSelectionViewComponent } from "./plant-selection-view/plant-selection-view.component";
+import { PlantSelectionViewComponent } from "./plant-listing-main/plant-selection-view.component";
 
 export const PlantsRoutes : Route[] = [
     {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlantService } from 'src/app/services/auth/plant.service';
+import { PlantService } from 'src/app/shared/services/plant/plant.service';
 
 @Component({
   selector: 'app-plant-selection-view',

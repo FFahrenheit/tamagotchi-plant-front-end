@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { InterceptorService } from './services/auth/interceptor.service';
+import { InterceptorService } from './shared/services/auth/interceptor.service';
 
 @NgModule({
   declarations: [

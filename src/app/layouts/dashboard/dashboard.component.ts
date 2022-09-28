@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TokenService } from 'src/app/services/auth/token.service';
+import { TokenService } from 'src/app/shared/services/auth/token.service';
 
 @Component({
   selector: 'app-dashboard',

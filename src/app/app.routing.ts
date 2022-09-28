@@ -31,7 +31,7 @@ export const AppRoutes: Route[] = [
             {
                 path: 'plants',
                 loadChildren: () =>
-                    import('./plants/plants.module').then(
+                    import('./plant-listing/plants.module').then(
                         m => m.PlantsModule
                     )
             },
