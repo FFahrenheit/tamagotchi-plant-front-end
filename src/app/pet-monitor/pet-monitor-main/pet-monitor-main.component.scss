@@ -1,0 +1,42 @@
+.main-wrapper{
+    height: 100%;
+    width: 100%;
+}
+
+.card{
+    background-color: rgb(228, 228, 228);
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);
+    border-radius: 10px;
+    height: 100%;
+    border: 0;
+}
+
+.spinner-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.temperatura ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #d24747;
+}
+
+.luminosidad ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #decd4a;
+}
+
+.tierra ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #885220;
+}
+
+.humedad ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #389fb9;
+}
+
+.plant-state{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;
+    border-color: rgb(186, 186, 186);
+}

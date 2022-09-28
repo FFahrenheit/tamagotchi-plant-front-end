@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plant-card',
@@ -15,7 +16,7 @@ export class PlantCardComponent implements OnInit {
 
   spinnerDiameter = window.innerHeight / 10;
 
-  constructor() {
+  constructor(private router:Router) {
 
   }
 
@@ -34,6 +35,10 @@ export class PlantCardComponent implements OnInit {
       this.humedad_tierra = (rec.humedad_tierra-plantData.min_humt) * 100 / (plantData.max_humt - plantData.min_humt);
       this.humedad_ambiente = (rec.humedad_ambiente-plantData.min_hum) * 100 / (plantData.max_hum - plantData.min_hum);
     }
+  }
+
+  onSelectClick(){
+    this.router.navigate(['/pet'])
   }
 
 }

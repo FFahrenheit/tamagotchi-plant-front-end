@@ -23,7 +23,7 @@ import { InterceptorService } from './shared/services/auth/interceptor.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes),
+    RouterModule.forRoot(AppRoutes, { useHash: true }),
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
