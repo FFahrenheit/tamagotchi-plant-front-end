@@ -4,6 +4,7 @@ import { PetMonitorMainComponent } from './pet-monitor-main/pet-monitor-main.com
 import { RouterModule } from '@angular/router';
 import { PetRoutes } from './pet-monitor.routing';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon'
 
 
 
@@ -14,10 +15,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
+    MatIconModule,
     RouterModule.forChild(PetRoutes)
   ],
   exports: [
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
   ]
 })
 export class PetMonitorModule { }
