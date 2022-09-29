@@ -41,6 +41,12 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
       this.plantSrv.getPlantById(params['id_micro']).subscribe(data => {
         console.log(data)
         this.plantData = data;
+
+        this.temperatura = (data.last_rec.temperatura - this.plantData.min_temp) * 100 / (this.plantData.max_temp - this.plantData.min_temp);
+        this.luminosidad = (data.last_rec.luminosidad - this.plantData.min_lum) * 100 / (this.plantData.max_lum - this.plantData.min_lum);
+        this.humedad_tierra = (data.last_rec.humedad_tierra - this.plantData.min_humt) * 100 / (this.plantData.max_humt - this.plantData.min_humt);
+        this.humedad_ambiente = (data.last_rec.humedad_ambiente - this.plantData.min_hum) * 100 / (this.plantData.max_hum - this.plantData.min_hum);
+
         this.plantaWs.listen("plantUpdate").subscribe(data => {
 
           this.wsData = data;

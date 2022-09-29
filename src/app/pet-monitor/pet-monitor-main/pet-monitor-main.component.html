@@ -38,7 +38,7 @@
     </div>
     <div class="col-md">
         <div class="row h-25 justify-content-center align-items-center d-none d-xl-flex">
-            <mat-icon class="header-icon">forest</mat-icon>
+            <mat-icon class="header-icon">{{plantData.icon}}</mat-icon>
         </div>
         <div class="row h-auto p-3 d-flex justify-content-center">
             <div class="card square d-flex justify-content-center align-items-center">
@@ -61,6 +61,9 @@
                     <mat-icon>videocam</mat-icon>
                 </button>
             </div>
+        </div>
+        <div class="row name h-25 d-none d-xl-flex">
+            {{plantData.name}}
         </div>
     </div>
     <div class="col-xl p-3">
