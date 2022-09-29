@@ -4,25 +4,25 @@
             <div class="row h-75">
                 <div class="row h-50">
                     <div class="col-sm spinner-container temperatura">
-                        <label>temperatura</label>
+                        <mat-icon>thermostat</mat-icon>
                         <mat-progress-spinner mode='determinate' value="{{temperatura}}" diameter="{{spinnerDiameter}}">
                         </mat-progress-spinner>
                     </div>
                     <div class="col-sm spinner-container luminosidad">
-                        <label>luminosidad</label>
+                        <mat-icon>brightness_low</mat-icon>
                         <mat-progress-spinner mode='determinate' value="{{luminosidad}}" diameter="{{spinnerDiameter}}">
                         </mat-progress-spinner>
                     </div>
                 </div>
                 <div class="row h-50">
-                    <div class="col-sm spinner-container tierra">
-                        <label>humedad en tierra</label>
+                    <div class="col-sm spinner-container tierra">                        
+                        <mat-icon>water_drop</mat-icon>
                         <mat-progress-spinner mode='determinate' value="{{humedad_tierra}}"
                             diameter="{{spinnerDiameter}}">
                         </mat-progress-spinner>
                     </div>
                     <div class="col-sm spinner-container humedad">
-                        <label>humedad en aire</label>
+                        <mat-icon>airwave</mat-icon>
                         <mat-progress-spinner mode='determinate' value="{{humedad_ambiente}}"
                             diameter="{{spinnerDiameter}}">
                         </mat-progress-spinner>
@@ -36,13 +36,13 @@
             </div>
         </div>
     </div>
-    <div class="col-sm">
-        <div class="row h-25 d-flex justify-content-center align-items-center">
+    <div class="col-md">
+        <div class="row h-25 justify-content-center align-items-center d-none d-xl-flex">
             <mat-icon class="header-icon">forest</mat-icon>
         </div>
-        <div class="row h-50 p-3 d-flex justify-content-center">
+        <div class="row h-auto p-3 d-flex justify-content-center">
             <div class="card square d-flex justify-content-center align-items-center">
-                <img src="/assets/faces/IMG_0672.png" class="face">
+                <img src="/assets/faces/IMG_0672.png" class="face w-100">
             </div>
         </div>
         <div class="row h-25">
@@ -63,9 +63,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md p-3">
-        <div class="card">
-
+    <div class="col-xl p-3">
+        <div class="card row h-100">
+            <canvas style="height:100%" id="canvasChart" #canvasChart></canvas>
         </div>
     </div>
 </div>
