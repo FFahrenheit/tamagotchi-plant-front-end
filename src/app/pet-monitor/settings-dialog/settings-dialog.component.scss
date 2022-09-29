@@ -1,0 +1,31 @@
+.dialog-wrapper{
+    width: 50vw;
+    height: 700px;
+}
+
+.icon-container > button{
+    background-color: ghostwhite;
+    width: 8vw;
+    height: 8vw;
+    min-width: 50px;
+    min-height: 50px;
+    border: 0;
+    border-radius: 25%;
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);
+}
+
+.icon-container > button:hover {
+    box-shadow: 2px 2px 4px var(--light-shadow), -2px -2px 4px var(--dark-shadow);
+}
+
+.icon-container > button>* {
+    font-size: calc(20px + 2vw);
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+
+mat-icon{
+    padding: 0;
+    margin: 0;
+}

@@ -100,17 +100,22 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
     });
 
     this.route.queryParams.subscribe(params =>{
-      this.plantaServ.getHistorics(params['planta_id']).subscribe(data =>{
-
-        this.initializeData(data.mediciones);
+      this.plantaServ.getHistorics(params['planta_id']).subscribe(historicData =>{
+        this.plantaServ.getPlantById(params['id_micro']).subscribe(plantData =>{
+          console.log(params['id_micro'])
+          this.initializeData(historicData.mediciones, plantData);
+        })
       })
     })
     
   }
 
-  private initializeData(recs:any) {
+  private initializeData(recs:any, plantData) {
 
-    let labels = recs.map( (o:any) => o.recTime);
+    let labels = recs.map( (o:any) => {
+      let date = new Date(o.recTime);
+      return date.toDateString();
+    });
     let tempRecs = recs.map((o:any) => {
       if(o.temperatura && o.temperatura > -100){
 
@@ -139,6 +144,42 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
       }
       return null;
     })
+
+    let tempColors = [];
+    for(let i=0; i < tempRecs.length; i++){
+      if(tempRecs[i] > plantData.max_temp || tempRecs[i] < plantData.min_temp){
+        tempColors[i] = 'red'
+      }else{
+        tempColors[i] = 'green'
+      }
+    }
+
+    let lumiColors = [];
+    for(let i=0; i < lumiRecs.length; i++){
+      if(lumiRecs[i] > plantData.max_lum || lumiRecs[i] < plantData.min_lumi){
+        lumiColors[i] = 'red'
+      }else{
+        lumiColors[i] = 'green'
+      }
+    }
+
+    let humaColors = [];
+    for(let i=0; i < humaRecs.length; i++){
+      if(humaRecs[i] > plantData.max_hum || humaRecs[i] < plantData.min_hum){
+        humaColors[i] = 'red'
+      }else{
+        humaColors[i] = 'green'
+      }
+    }
+
+    let humtColors = [];
+    for(let i=0; i < humtRecs.length; i++){
+      if(humtRecs[i] > plantData.max_humt || humtRecs[i] < plantData.min_humt){
+        humtColors[i] = 'red'
+      }else{
+        humtColors[i] = 'green'
+      }
+    }
     
     this.tempData = {
       labels: labels,
@@ -146,8 +187,8 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
         {
           label: 'Temperatura',
           data: tempRecs,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          borderColor: tempColors,
+          backgroundColor: tempColors,
         }
       ]
     }
@@ -158,8 +199,8 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
         {
           label: 'Luminosidad',
           data: lumiRecs,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+          borderColor: lumiColors,
+          backgroundColor: lumiColors,
         }
       ]
     }
@@ -170,8 +211,8 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
         {
           label: 'Humedad en la tierra',
           data: humtRecs,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+          borderColor: humtColors,
+          backgroundColor: humtColors,
         }
       ]
     }
@@ -182,14 +223,15 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
         {
           label: 'Humedad en el aire',
           data: humaRecs,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+          borderColor: humaColors,
+          backgroundColor: humaColors,
         }
       ]
     }
 
     this.tempChart.data = this.tempData;
     this.tempChart.update();
+
     this.lumiChart.data = this.lumiData;
     this.lumiChart.update();
     this.humtChart.data = this.humtData;

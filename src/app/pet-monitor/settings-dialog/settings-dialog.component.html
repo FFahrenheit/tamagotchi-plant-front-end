@@ -1,0 +1,107 @@
+<div class="dialog-wrapper row">
+    <div class="col-lg-7 h-100 d-flex justify-content-center align-items-center">
+        <div class="row h-75">
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>forest</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>house</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>grass</mat-icon>
+                </button>
+            </div>
+            <div class="w-100"></div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>sentiment_satisfied</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>local_florist</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>emoji_nature</mat-icon>
+                </button>
+            </div>
+            <div class="w-100"></div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>apartment</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>eco</mat-icon>
+                </button>
+            </div>
+            <div class="col d-flex icon-container align-items-center justify-content-center">
+                <button>
+                    <mat-icon>nature_people</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 justify-content-center align-items-center h-100 d-flex flex-column">
+        <form [formGroup]="settingsForm" class="row">
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Min temp</mat-label>
+                <input matInput formControlName="min_temp" type="number">
+                <mat-icon matSuffix>device_thermostat</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Max temp</mat-label>
+                <input matInput formControlName="max_temp" type="number">
+                <mat-icon matSuffix>device_thermostat</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Min lum</mat-label>
+                <input matInput formControlName="min_lum" type="number">
+                <mat-icon matSuffix>brightness_6</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Max lum</mat-label>
+                <input matInput formControlName="max_lum" type="number">
+                <mat-icon matSuffix>brightness_6</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Min humt</mat-label>
+                <input matInput formControlName="min_humt" type="number">
+                <mat-icon matSuffix>water_drop</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Min humt</mat-label>
+                <input matInput formControlName="max_humt" type="number">
+                <mat-icon matSuffix>water_drop</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Min huma</mat-label>
+                <input matInput formControlName="min_hum" type="number">
+                <mat-icon matSuffix>airwave</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+                <mat-label>Max huma</mat-label>
+                <input matInput formControlName="max_hum" type="number">
+                <mat-icon matSuffix>airwave</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Pot name</mat-label>
+                <input matInput formControlName="name">
+                <mat-icon matSuffix>eco</mat-icon>
+            </mat-form-field>
+        </form>
+        <div class="row">
+            <button mat-stroked-button>
+                Save <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
