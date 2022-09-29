@@ -39,7 +39,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   plantData: any = {};
   wsData: any = {};
 
-  constructor(private plantSrv: PlantService, private plantaWs: PlantStatusService, private route: ActivatedRoute) {
+  constructor(private plantSrv: PlantService, private plantaWs: PlantStatusService, private route: ActivatedRoute, private router:Router) {
 
   }
 
@@ -169,6 +169,10 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
       dataset.data.pop();
     });
     this.myChart.update();
+  }
+
+  onHistoricsClick(){
+    this.router.navigate(['/historics']);
   }
 
   @HostListener('window:resize', ['$event'])
