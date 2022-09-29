@@ -7,7 +7,7 @@ import { io } from 'socket.io-client';
 })
 export class PlantStatusService {
   socket : any;
-  readonly uri : string = 'http://localhost:4000'
+  readonly uri : string = 'http://64.227.14.152:3000/'
 
   constructor() { 
     this.socket = io(this.uri, { transports : ['websocket'] });
