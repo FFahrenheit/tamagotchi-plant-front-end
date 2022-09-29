@@ -3,6 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlantService } from 'src/app/shared/services/plant/plant.service';
 import { PlantStatusService } from 'src/app/shared/services/sockets/plant-status.service';
 import Chart from 'chart.js/auto';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
+export const fade = [
+  trigger('fade', [
+    state('in', style({ 'opacity': '1' })),
+    state('out', style({ 'opacity': '0' })),
+    transition('* <=> *', [
+      animate(1000)
+    ])
+  ])
+];
 
 @Component({
   selector: 'app-pet-monitor-main',
@@ -21,6 +32,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   luminosidad = 0;
   humedad_tierra = 0;
   humedad_ambiente = 0;
+  estado="Feliz";
 
   spinnerDiameter = window.innerHeight / 7;
 
@@ -58,6 +70,24 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
             + currentdate.getSeconds();
 
           this.addData(datetime, rec);
+
+          if(rec.temperatura > this.plantData.max_temp){
+            this.estado = "Caliente";
+          }else if(rec.temperatura < this.plantData.min_temp){
+            this.estado = "Congelado";
+          }else if(rec.luminosidad > this.plantData.max_lum){
+            this.estado = "Encandilado";
+          }else if(rec.luminosidad < this.plantData.min_lum){
+            this.estado = "Vampiro";
+          }else if(rec.humedad_ambiente < this.plantData.min_hum || rec.humedad_tierra < this.plantData.min_humt){
+            this.estado = "Seco";
+          }else if(rec.humedad_ambiente > this.plantData.max_hum){
+            this.estado = "Sofocado";
+          }else if(rec.humedad_tierra > this.plantData.max_humt){
+            this.estado = "Ahogado";
+          }else{
+            this.estado = "Feliz";
+          }
         })
       })
     })
