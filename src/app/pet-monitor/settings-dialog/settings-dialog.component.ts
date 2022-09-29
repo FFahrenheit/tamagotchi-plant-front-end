@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-settings-dialog',
@@ -9,23 +10,33 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SettingsDialogComponent implements OnInit {
 
   public settingsForm: FormGroup
+  iconSelection;
 
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
+  
+  }
 
   ngOnInit(): void {
+    let plantData = this.data.plantData;
+    this.iconSelection = plantData.icon;
+    console.log(this.iconSelection);
     this.settingsForm = new FormGroup({
-      min_temp: new FormControl(''),
-      max_temp: new FormControl(''),
-      min_lum: new FormControl(''),
-      max_lum: new FormControl(''),
-      min_hum: new FormControl(''),
-      max_hum: new FormControl(''),
-      min_humt: new FormControl(''),
-      max_humt: new FormControl(''),
-      name: new FormControl('')
+      min_temp: new FormControl(plantData.min_temp),
+      max_temp: new FormControl(plantData.max_temp),
+      min_lum: new FormControl(plantData.min_lum),
+      max_lum: new FormControl(plantData.max_lum),
+      min_hum: new FormControl(plantData.min_hum),
+      max_hum: new FormControl(plantData.max_hum),
+      min_humt: new FormControl(plantData.min_humt),
+      max_humt: new FormControl(plantData.max_humt),
+      name: new FormControl(plantData.name)
     });
 
+  }
+
+  onIconSelect(icon){
+    this.iconSelection = icon;
   }
 
 }
