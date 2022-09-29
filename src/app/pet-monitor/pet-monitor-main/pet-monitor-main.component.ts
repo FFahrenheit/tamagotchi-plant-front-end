@@ -173,6 +173,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
 
   onHistoricsClick(){
     this.router.navigate(['/historics']);
+    
   }
 
   @HostListener('window:resize', ['$event'])
