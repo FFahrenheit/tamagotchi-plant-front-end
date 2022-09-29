@@ -25,6 +25,13 @@ export const AppRoutes: Route[] = [
                     )
             },
             {
+                path: 'historics',
+                loadChildren: () =>
+                    import('./historics/historics.module').then(
+                        m => m.HistoricsModule
+                    )
+            },
+            {
                 path: '',
                 pathMatch: 'full',
                 redirectTo: 'plants'

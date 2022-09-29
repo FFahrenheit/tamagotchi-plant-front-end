@@ -4,23 +4,39 @@ import { PetMonitorMainComponent } from './pet-monitor-main/pet-monitor-main.com
 import { RouterModule } from '@angular/router';
 import { PetRoutes } from './pet-monitor.routing';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
   declarations: [
-    PetMonitorMainComponent
+    PetMonitorMainComponent,
+    SettingsDialogComponent
   ],
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MatDialogModule,
+    FormsModule, ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     RouterModule.forChild(PetRoutes)
   ],
   exports: [
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class PetMonitorModule { }
