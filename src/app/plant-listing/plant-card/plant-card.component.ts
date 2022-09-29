@@ -38,7 +38,7 @@ export class PlantCardComponent implements OnInit {
   }
 
   onSelectClick(){
-    this.router.navigate(['/pet'])
+    this.router.navigate(['/pet'], { queryParams: { id_micro: this.plantData.id_micro } })
   }
 
 }
