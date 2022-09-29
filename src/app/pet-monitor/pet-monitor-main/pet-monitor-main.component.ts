@@ -176,7 +176,12 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   onSettingClick() {
     this.route.queryParams.subscribe(params => {
       this.dialog.open(SettingsDialogComponent, { data: { plantData:this.plantData } }).afterClosed().subscribe(result => {
-
+        if(result){
+          console.log(result);
+          this.plantSrv.putConfigs(result.data, this.plantData.id_micro).subscribe(data=>{
+            this.plantSrv.getPlantById( this.plantData.id_micro).subscribe(data =>{this.plantData = data})
+          })
+        }
       })
 
     })

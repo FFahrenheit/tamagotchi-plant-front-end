@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-settings-dialog',
@@ -13,7 +13,7 @@ export class SettingsDialogComponent implements OnInit {
   iconSelection;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<SettingsDialogComponent>) { 
   
   }
 
@@ -37,6 +37,12 @@ export class SettingsDialogComponent implements OnInit {
 
   onIconSelect(icon){
     this.iconSelection = icon;
+  }
+
+  onSaveClick(){
+    let returnData = this.settingsForm.value;
+    returnData['icon'] = this.iconSelection;
+    this.dialogRef.close({data:returnData})
   }
 
 }
