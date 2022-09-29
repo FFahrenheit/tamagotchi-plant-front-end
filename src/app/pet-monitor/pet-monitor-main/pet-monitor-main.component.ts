@@ -3,17 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlantService } from 'src/app/shared/services/plant/plant.service';
 import { PlantStatusService } from 'src/app/shared/services/sockets/plant-status.service';
 import Chart from 'chart.js/auto';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 
-export const fade = [
-  trigger('fade', [
-    state('in', style({ 'opacity': '1' })),
-    state('out', style({ 'opacity': '0' })),
-    transition('* <=> *', [
-      animate(1000)
-    ])
-  ])
-];
 
 @Component({
   selector: 'app-pet-monitor-main',
@@ -172,7 +162,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   }
 
   onHistoricsClick(){
-    this.router.navigate(['/historics']);
+    this.router.navigate(['/historics'], { queryParams: { planta_id: this.plantData._id } });
     
   }
 
