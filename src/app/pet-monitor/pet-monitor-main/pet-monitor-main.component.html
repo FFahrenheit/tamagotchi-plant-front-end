@@ -40,6 +40,9 @@
     <div class="col-md">
         <div class="row h-25 justify-content-center align-items-center d-none d-xl-flex">
             <mat-icon class="header-icon">{{plantData.icon}}</mat-icon>
+            <h4 class="text-center status-span" *ngIf="showCamera">
+                {{plantData.name}}
+            </h4>
         </div>
         <div class="row h-auto p-3 d-flex justify-content-center">
             <div class="card square d-flex justify-content-center align-items-center">
@@ -80,7 +83,8 @@
                         </div>
                     </div>
                 </div>
-                <img [src]="showCamera ? (cameraSrc || 'assets/no_video.png') : '/assets/faces/' + estado +'.png'"  class="face w-100">
+                <img [src]="showCamera ? (cameraSrc || 'assets/no_video.png') : '/assets/faces/' + estado +'.png'"  class="face w-100"
+                 [class]="showCamera? 'video-stream' : ''">
 
                 <div *ngIf="showCamera">
                     <ul class="mt-1">

@@ -287,6 +287,11 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   public cameraClick(){
     this.showCamera = !this.showCamera;
     if(this.showCamera && !this.cameraSrc){
+      if(!this.plantData.hasOwnProperty('camera_ip')){
+        this.toastr.error('No se puede visualizar el stream', 'Cámara desconectada');
+        return;
+      }
+      this.serverUrl = this.plantData['camera_ip'];
       this.toastr.info('Conectando a servicio de cámara, espere por favor', 'Conectando...')
       this.cameraService.connect(this.serverUrl).then(resp => {
         this.toastr.clear();
