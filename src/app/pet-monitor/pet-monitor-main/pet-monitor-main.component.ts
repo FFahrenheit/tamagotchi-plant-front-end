@@ -30,7 +30,8 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   humedad_ambiente = 0;
   estado = "Feliz";
 
-
+  tituloAnalisis = "Titulo";
+  cuerpoAnalisis = "Resultados de su analisis";
 
   spinnerDiameter = window.innerHeight / 7;
 
@@ -102,9 +103,18 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
             }
           })
 
-          console.log(signMean);
-          console.log(cont);
+          if(cont>0 && cont < 3){
+            this.tituloAnalisis = "Puedes mejorar 😃"
+            this.cuerpoAnalisis = this.getImprovements(signMean);
+          }else if(cont >= 3){
+            this.tituloAnalisis = "Esto no se ve muy bien ☹️"
+            this.cuerpoAnalisis = this.getImprovements(signMean);
+          }else{
+            this.tituloAnalisis = "Perfecto! 🥰";
+            this.cuerpoAnalisis = "Gracias a un análisis ejecutado por nuestra IA, se ha determinado que tu planta se ha encontrado en un buen estado en la última semana."
+          }
 
+          console.log(signMean);
         })
 
         this.temperatura = (data.last_rec.temperatura - this.plantData.min_temp) * 100 / (this.plantData.max_temp - this.plantData.min_temp);
@@ -175,6 +185,19 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
     });
 
     this.initializeData();
+  }
+
+  private getImprovements(analisis){
+    let body = "";
+    body += analisis[0] == -1 ? "Mueve tu maceta a un lugar más calido.\n":"";
+    body += analisis[0] == 1 ? "Mueve tu maceta a un lugar más frio.\n":"";
+    body += analisis[1] == -1 ? "Mueve tu maceta a un lugar con más luz.\n":"";
+    body += analisis[1] == 1 ? "Mueve tu maceta a un lugar con menos luz.\n":"";
+    body += analisis[2] == 1 ? "Mueve tu maceta a un lugar más seco.\n":"";
+    body += analisis[2] == -1 ? "Mueve tu maceta a un lugar más humedo.\n":"";
+    body += analisis[3] == 1 ? "Riega con una menor frecuencia tu planta.\n":"";
+    body += analisis[3] == -1 ? "Riega con una mayor frecuencia tu planta.\n":"";
+    return body;
   }
 
   private initializeData() {

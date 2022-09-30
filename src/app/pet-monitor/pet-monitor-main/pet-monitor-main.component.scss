@@ -19,6 +19,13 @@
     align-items: center;
 }
 
+textarea{
+    background-color: transparent;
+    width: 100%;
+    resize: none;
+    border: 0;
+}
+
 canvas {
     width: 100%;
 }
