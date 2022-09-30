@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlantService } from 'src/app/shared/services/plant/plant.service';
 import { PlantStatusService } from 'src/app/shared/services/sockets/plant-status.service';
 import Chart from 'chart.js/auto';
+import { MatDialog } from '@angular/material/dialog';
+import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
+
 
 @Component({
   selector: 'app-pet-monitor-main',
@@ -21,13 +24,14 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   luminosidad = 0;
   humedad_tierra = 0;
   humedad_ambiente = 0;
+  estado = "Feliz";
 
   spinnerDiameter = window.innerHeight / 7;
 
   plantData: any = {};
   wsData: any = {};
 
-  constructor(private plantSrv: PlantService, private plantaWs: PlantStatusService, private route: ActivatedRoute) {
+  constructor(private plantSrv: PlantService, private plantaWs: PlantStatusService, private route: ActivatedRoute, private router: Router, private dialog: MatDialog) {
 
   }
 
@@ -37,6 +41,12 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
       this.plantSrv.getPlantById(params['id_micro']).subscribe(data => {
         console.log(data)
         this.plantData = data;
+
+        this.temperatura = (data.last_rec.temperatura - this.plantData.min_temp) * 100 / (this.plantData.max_temp - this.plantData.min_temp);
+        this.luminosidad = (data.last_rec.luminosidad - this.plantData.min_lum) * 100 / (this.plantData.max_lum - this.plantData.min_lum);
+        this.humedad_tierra = (data.last_rec.humedad_tierra - this.plantData.min_humt) * 100 / (this.plantData.max_humt - this.plantData.min_humt);
+        this.humedad_ambiente = (data.last_rec.humedad_ambiente - this.plantData.min_hum) * 100 / (this.plantData.max_hum - this.plantData.min_hum);
+
         this.plantaWs.listen("plantUpdate").subscribe(data => {
 
           this.wsData = data;
@@ -53,11 +63,29 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
           }
 
           let currentdate = new Date();
-          let datetime:string = currentdate.getHours() + ":"
+          let datetime: string = currentdate.getHours() + ":"
             + currentdate.getMinutes() + ":"
             + currentdate.getSeconds();
 
           this.addData(datetime, rec);
+
+          if (rec.temperatura > this.plantData.max_temp) {
+            this.estado = "Caliente";
+          } else if (rec.temperatura < this.plantData.min_temp) {
+            this.estado = "Congelado";
+          } else if (rec.luminosidad > this.plantData.max_lum) {
+            this.estado = "Encandilado";
+          } else if (rec.luminosidad < this.plantData.min_lum) {
+            this.estado = "Vampiro";
+          } else if (rec.humedad_ambiente < this.plantData.min_hum || rec.humedad_tierra < this.plantData.min_humt) {
+            this.estado = "Seco";
+          } else if (rec.humedad_ambiente > this.plantData.max_hum) {
+            this.estado = "Sofocado";
+          } else if (rec.humedad_tierra > this.plantData.max_humt) {
+            this.estado = "Ahogado";
+          } else {
+            this.estado = "Feliz";
+          }
         })
       })
     })
@@ -71,7 +99,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
       data: this.data,
       options: {
         responsive: true,
-        maintainAspectRatio: false, 
+        maintainAspectRatio: false,
         plugins: {
           title: {
             display: true,
@@ -105,7 +133,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
           data: [],
           borderColor: 'rgb(54, 162, 235)',
           backgroundColor: 'rgba(54, 162, 235, 0.5)'
-          
+
         },
         {
           label: 'Humedad aire',
@@ -141,9 +169,27 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
     this.myChart.update();
   }
 
+  onHistoricsClick() {
+    this.router.navigate(['/historics'], { queryParams: { planta_id: this.plantData._id, id_micro: this.plantData.id_micro } });
+
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.spinnerDiameter = window.innerHeight / 7;
   }
 
+  onSettingClick() {
+    this.route.queryParams.subscribe(params => {
+      this.dialog.open(SettingsDialogComponent, { data: { plantData:this.plantData } }).afterClosed().subscribe(result => {
+        if(result){
+          console.log(result);
+          this.plantSrv.putConfigs(result.data, this.plantData.id_micro).subscribe(data=>{
+            this.plantSrv.getPlantById( this.plantData.id_micro).subscribe(data =>{this.plantData = data})
+          })
+        }
+      })
+
+    })
+  }
 }

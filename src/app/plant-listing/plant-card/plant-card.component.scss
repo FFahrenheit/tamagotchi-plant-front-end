@@ -20,7 +20,7 @@
 }
 
 .card-thumbnail{
-    height: 20%;
+    height: 15%;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -83,4 +83,12 @@ mat-icon{
     font-size: 100px;
     width: fit-content;
     height: fit-content;
+}
+
+.name{
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
 }
