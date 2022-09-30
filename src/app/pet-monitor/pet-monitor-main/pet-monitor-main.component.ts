@@ -27,6 +27,8 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   humedad_ambiente = 0;
   estado = "Feliz";
 
+
+
   spinnerDiameter = window.innerHeight / 7;
 
   plantData: any = {};
@@ -87,6 +89,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
 
           console.log(signMean);
           console.log(cont);
+
         })
 
         this.temperatura = (data.last_rec.temperatura - this.plantData.min_temp) * 100 / (this.plantData.max_temp - this.plantData.min_temp);

@@ -32,6 +32,13 @@ export const AppRoutes: Route[] = [
                     )
             },
             {
+                path: 'register',
+                loadChildren: () =>
+                    import('./plant-register/plant-register.module').then(
+                        m => m.PlantRegisterModule
+                    )
+            },
+            {
                 path: '',
                 pathMatch: 'full',
                 redirectTo: 'plants'

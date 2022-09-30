@@ -20,7 +20,7 @@ export class SettingsDialogComponent implements OnInit {
   ngOnInit(): void {
     let plantData = this.data.plantData;
     this.iconSelection = plantData.icon;
-    console.log(this.iconSelection);
+
     this.settingsForm = new FormGroup({
       min_temp: new FormControl(plantData.min_temp),
       max_temp: new FormControl(plantData.max_temp),
