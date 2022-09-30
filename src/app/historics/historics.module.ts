@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { HistoricsMainComponent } from './historics-main/historics-main.component';
 import { RouterModule } from '@angular/router';
 import { HistoricsRoutes } from './historics.routing';
+import { ClusterChartComponent } from './cluster-chart/cluster-chart.component';
 
 
 @NgModule({
   declarations: [
-    HistoricsMainComponent
+    HistoricsMainComponent,
+    ClusterChartComponent
   ],
   imports: [
     CommonModule,

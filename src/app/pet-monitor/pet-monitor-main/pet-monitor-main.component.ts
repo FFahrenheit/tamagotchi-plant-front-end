@@ -30,8 +30,8 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   humedad_ambiente = 0;
   estado = "Feliz";
 
-  tituloAnalisis = "Titulo";
-  cuerpoAnalisis = "Resultados de su analisis";
+  tituloAnalisis = "Cargando...";
+  cuerpoAnalisis = "Nuestra IA está analizando su planta.";
 
   spinnerDiameter = window.innerHeight / 7;
 
@@ -103,16 +103,19 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
             }
           })
 
-          if(cont>0 && cont < 3){
-            this.tituloAnalisis = "Puedes mejorar 😃"
-            this.cuerpoAnalisis = this.getImprovements(signMean);
-          }else if(cont >= 3){
-            this.tituloAnalisis = "Esto no se ve muy bien ☹️"
-            this.cuerpoAnalisis = this.getImprovements(signMean);
-          }else{
-            this.tituloAnalisis = "Perfecto! 🥰";
-            this.cuerpoAnalisis = "Gracias a un análisis ejecutado por nuestra IA, se ha determinado que tu planta se ha encontrado en un buen estado en la última semana."
-          }
+          setTimeout(() => {
+            if(cont>0 && cont < 3){
+              this.tituloAnalisis = "Puedes mejorar 😃"
+              this.cuerpoAnalisis = this.getImprovements(signMean);
+            }else if(cont >= 3){
+              this.tituloAnalisis = "Esto no se ve muy bien ☹️"
+              this.cuerpoAnalisis = this.getImprovements(signMean);
+            }else{
+              this.tituloAnalisis = "Perfecto! 🥰";
+              this.cuerpoAnalisis = "Gracias a un análisis ejecutado por nuestra IA, se ha determinado que tu planta se ha encontrado en un buen estado en la última semana."
+            }
+          }, 2300);
+          
 
           console.log(signMean);
         })

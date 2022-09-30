@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import { PlantService } from 'src/app/shared/services/plant/plant.service';
 import kmeans from 'dimas-kmeans';
+import { KmeansService } from 'src/app/shared/services/kmeans/kmeans.service';
 
 @Component({
   selector: 'app-historics-main',
@@ -32,12 +33,24 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
   humtData: any;
   humaData: any;
 
-  constructor(private plantaServ:PlantService, private route:ActivatedRoute) { }
+  constructor(private plantaServ: PlantService,
+    private route: ActivatedRoute,
+    private kmeanSrv: KmeansService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  swapChart() {
+    this.route.queryParams.subscribe(params => {
+      this.router.navigate(['/historics/clustering'], { queryParams: { planta_id: params['planta_id'], id_micro:params['id_micro'] } })
+    });
+  }
+
   ngAfterViewInit() {
+    
+
+
     this.canvasTemp = this.temperaturaChart.nativeElement;
     this.canvasLumi = this.luminosidadChart.nativeElement;
     this.canvasHumA = this.aireChart.nativeElement;
@@ -100,47 +113,47 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.route.queryParams.subscribe(params =>{
-      this.plantaServ.getHistorics(params['planta_id']).subscribe(historicData =>{
-        this.plantaServ.getPlantById(params['id_micro']).subscribe(plantData =>{
+    this.route.queryParams.subscribe(params => {
+      this.plantaServ.getHistorics(params['planta_id']).subscribe(historicData => {
+        this.plantaServ.getPlantById(params['id_micro']).subscribe(plantData => {
           this.initializeData(historicData.mediciones, plantData);
         })
       })
     })
-    
+
   }
 
-  private initializeData(recs:any, plantData) {
+  private initializeData(recs: any, plantData) {
 
-   
 
-    let labels = recs.map( (o:any) => {
+
+    let labels = recs.map((o: any) => {
       let date = new Date(o.recTime);
       return date.toDateString();
     });
-    let tempRecs = recs.map((o:any) => {
-      if(o.temperatura && o.temperatura > -100){
+    let tempRecs = recs.map((o: any) => {
+      if (o.temperatura && o.temperatura > -100) {
 
         return o.temperatura
       }
       return null;
     })
-    let lumiRecs = recs.map((o:any) => {
-      if(o.luminosidad){
+    let lumiRecs = recs.map((o: any) => {
+      if (o.luminosidad) {
 
         return o.luminosidad
       }
       return null;
     })
-    let humtRecs = recs.map((o:any) => {
-      if(o.humedad_tierra){
+    let humtRecs = recs.map((o: any) => {
+      if (o.humedad_tierra) {
 
         return o.humedad_tierra
       }
       return null;
     })
-    let humaRecs = recs.map((o:any) => {
-      if(o.humedad_ambiente && o.temperatura > -100){
+    let humaRecs = recs.map((o: any) => {
+      if (o.humedad_ambiente && o.temperatura > -100) {
 
         return o.humedad_ambiente
       }
@@ -148,41 +161,41 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
     })
 
     let tempColors = [];
-    for(let i=0; i < tempRecs.length; i++){
-      if(tempRecs[i] > plantData.max_temp || tempRecs[i] < plantData.min_temp){
+    for (let i = 0; i < tempRecs.length; i++) {
+      if (tempRecs[i] > plantData.max_temp || tempRecs[i] < plantData.min_temp) {
         tempColors[i] = 'red'
-      }else{
+      } else {
         tempColors[i] = 'green'
       }
     }
 
     let lumiColors = [];
-    for(let i=0; i < lumiRecs.length; i++){
-      if(lumiRecs[i] > plantData.max_lum || lumiRecs[i] < plantData.min_lumi){
+    for (let i = 0; i < lumiRecs.length; i++) {
+      if (lumiRecs[i] > plantData.max_lum || lumiRecs[i] < plantData.min_lumi) {
         lumiColors[i] = 'red'
-      }else{
+      } else {
         lumiColors[i] = 'green'
       }
     }
 
     let humaColors = [];
-    for(let i=0; i < humaRecs.length; i++){
-      if(humaRecs[i] > plantData.max_hum || humaRecs[i] < plantData.min_hum){
+    for (let i = 0; i < humaRecs.length; i++) {
+      if (humaRecs[i] > plantData.max_hum || humaRecs[i] < plantData.min_hum) {
         humaColors[i] = 'red'
-      }else{
+      } else {
         humaColors[i] = 'green'
       }
     }
 
     let humtColors = [];
-    for(let i=0; i < humtRecs.length; i++){
-      if(humtRecs[i] > plantData.max_humt || humtRecs[i] < plantData.min_humt){
+    for (let i = 0; i < humtRecs.length; i++) {
+      if (humtRecs[i] > plantData.max_humt || humtRecs[i] < plantData.min_humt) {
         humtColors[i] = 'red'
-      }else{
+      } else {
         humtColors[i] = 'green'
       }
     }
-    
+
     this.tempData = {
       labels: labels,
       datasets: [
