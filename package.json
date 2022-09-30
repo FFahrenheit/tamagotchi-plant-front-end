@@ -25,6 +25,8 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "chart.js": "^3.9.1",
+    "dimas-kmeans": "^1.0.3",
+    "kmeans": "^0.0.1",
     "ngx-toastr": "^15.0.0",
     "rxjs": "~7.5.0",
     "socket.io-client": "^4.5.2",
