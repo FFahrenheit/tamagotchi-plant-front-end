@@ -5,6 +5,7 @@ import { PlantStatusService } from 'src/app/shared/services/sockets/plant-status
 import Chart from 'chart.js/auto';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
+import { KmeansService } from 'src/app/shared/services/kmeans/kmeans.service';
 
 
 @Component({
@@ -31,7 +32,13 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   plantData: any = {};
   wsData: any = {};
 
-  constructor(private plantSrv: PlantService, private plantaWs: PlantStatusService, private route: ActivatedRoute, private router: Router, private dialog: MatDialog) {
+  constructor(private plantSrv: PlantService, 
+    private plantaWs: PlantStatusService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private dialog: MatDialog,
+    private kmeanServicie: KmeansService
+    ) {
 
   }
 
@@ -39,8 +46,48 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe(params => {
       this.plantaWs.emit("id", params['id_micro']);
       this.plantSrv.getPlantById(params['id_micro']).subscribe(data => {
-        console.log(data)
         this.plantData = data;
+
+        this.plantSrv.getHistorics(data._id).subscribe(recs=>{
+          let mediciones = recs.mediciones;
+          
+          let signMean = this.kmeanServicie.getSignificantMean(mediciones);
+          console.log(signMean);
+
+          if(signMean[0] < this.plantData.min_temp){
+            signMean[0] = -1;
+          }else{
+            signMean[0] = signMean[0] > this.plantData.max_temp ? 1 : 0;
+          }
+
+          if(signMean[1] < this.plantData.min_lum){
+            signMean[1] = -1;
+          }else {
+            signMean[1] = signMean[1] > this.plantData.max_lum ? 1 : 0;
+          }
+
+          if(signMean[2] < this.plantData.min_hum){
+            signMean[2] = -1;
+          }else {
+            signMean[2] = signMean[2] > this.plantData.max_hum ? 1 : 0;
+          }
+
+          if(signMean[3] < this.plantData.min_humt){
+            signMean[3] = -1;
+          }else {
+            signMean[3] = signMean[3] > this.plantData.max_humt ? 1 : 0;
+          }
+
+          let cont = 0;
+          signMean.forEach(obj => {
+            if(obj != 0){
+              cont++;
+            }
+          })
+
+          console.log(signMean);
+          console.log(cont);
+        })
 
         this.temperatura = (data.last_rec.temperatura - this.plantData.min_temp) * 100 / (this.plantData.max_temp - this.plantData.min_temp);
         this.luminosidad = (data.last_rec.luminosidad - this.plantData.min_lum) * 100 / (this.plantData.max_lum - this.plantData.min_lum);

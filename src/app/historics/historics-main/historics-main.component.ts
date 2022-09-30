@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js/auto';
 import { PlantService } from 'src/app/shared/services/plant/plant.service';
+import kmeans from 'dimas-kmeans';
 
 @Component({
   selector: 'app-historics-main',
@@ -102,7 +103,6 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe(params =>{
       this.plantaServ.getHistorics(params['planta_id']).subscribe(historicData =>{
         this.plantaServ.getPlantById(params['id_micro']).subscribe(plantData =>{
-          console.log(params['id_micro'])
           this.initializeData(historicData.mediciones, plantData);
         })
       })
@@ -111,6 +111,8 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
   }
 
   private initializeData(recs:any, plantData) {
+
+   
 
     let labels = recs.map( (o:any) => {
       let date = new Date(o.recTime);
