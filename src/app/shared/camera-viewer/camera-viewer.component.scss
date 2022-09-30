@@ -1,0 +1,13 @@
+.card{
+    background-color: rgb(228, 228, 228);
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);
+    border-radius: 10px;
+    height: 100%;
+    border: 0;
+}
+
+.video{
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    max-height: 240px;
+}
