@@ -1,0 +1,19 @@
+<div class="main-wrapper d-flex justify-content-center align-items-center flex-column">
+
+    <div class="row card">
+        <h1>Registra tu nueva planta! <i class="fas fa-seedling mx-3 pb-2"></i></h1>
+        <form [formGroup]="registerForm">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>ID de maceta (numero serial)</mat-label>
+                <input matInput formControlName="id_micro">
+                <mat-icon matSuffix>pin</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Nombre de la planta</mat-label>
+                <input matInput formControlName="name">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+        </form>
+        <button mat-stroked-button (click)="onSaveClick()">Guardar<mat-icon>save</mat-icon></button>
+    </div>
+</div>

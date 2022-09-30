@@ -24,6 +24,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  onRegisterClick(){
+    this.router.navigate(['/register'])
+  }
+
   public toggleSidebar() : void {
     console.log('Toggled', this.shown);
     this.shown = !this.shown;

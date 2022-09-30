@@ -29,4 +29,9 @@ export class PlantService {
     var headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"));
     return this.http.put<any>('api/planta/settings/' + id, data, { headers: headers });
   }
+
+  postNewPlant(data:any):Observable<any>{
+    var headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"));
+    return this.http.post<any>('api/planta/', data, { headers: headers });
+  }
 }
