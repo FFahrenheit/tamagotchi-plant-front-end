@@ -6,6 +6,9 @@ import Chart from 'chart.js/auto';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
 import { KmeansService } from 'src/app/shared/services/kmeans/kmeans.service';
+import { SafeUrl } from '@angular/platform-browser';
+import { CameraViewerService } from 'src/app/shared/services/sockets/camera-viewer.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,12 +35,24 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   plantData: any = {};
   wsData: any = {};
 
-  constructor(private plantSrv: PlantService, 
-    private plantaWs: PlantStatusService, 
-    private route: ActivatedRoute, 
-    private router: Router, 
+  public showCamera : boolean = false;
+  public cameraSrc : SafeUrl;
+  public status : string;
+  public faceList : string[] = [];
+  public mode = 'stream';
+
+  public faceName : string;
+
+  private serverUrl = '192.168.100.200';
+
+  constructor(private plantSrv: PlantService,
+    private plantaWs: PlantStatusService,
+    private route: ActivatedRoute,
+    private router: Router,
     private dialog: MatDialog,
-    private kmeanServicie: KmeansService
+    private kmeanServicie: KmeansService,
+    private cameraService: CameraViewerService,
+    private toastr: ToastrService
     ) {
 
   }
@@ -50,7 +65,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
 
         this.plantSrv.getHistorics(data._id).subscribe(recs=>{
           let mediciones = recs.mediciones;
-          
+
           let signMean = this.kmeanServicie.getSignificantMean(mediciones);
           console.log(signMean);
 
@@ -238,5 +253,72 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
       })
 
     })
+  }
+
+  public cameraClick(){
+    this.showCamera = !this.showCamera;
+    if(this.showCamera && !this.cameraSrc){
+      this.toastr.info('Conectando a servicio de cámara, espere por favor', 'Conectando...')
+      this.cameraService.connect(this.serverUrl).then(resp => {
+        this.toastr.clear();
+        if(!resp){
+          this.toastr.error('No se pudo conectar al servicio de cámara', 'Error');
+          return;
+        }
+        this.toastr.success('Conectado con éxito', 'Viendo streaming');
+
+        this.cameraService.streamVideo().subscribe(frame => {
+          this.cameraSrc = frame;
+        });
+
+        this.cameraService.getStatusUpdates().subscribe(update => {
+          this.status = update;
+        });
+
+        this.cameraService.getFaces().subscribe(face => {
+          this.faceList.push(face);
+        });
+
+        this.cameraService.getPersonDetected().subscribe(person => {
+          this.toastr.clear();
+          this.toastr.success('¡' + person + ' detectado!', 'Hola ' + person);
+        });
+
+        this.cameraService.getPersonDetected().subscribe(()=> {
+          console.warn('XD');
+        });
+
+      }, error=>{
+        this.toastr.clear();
+        this.toastr.error(error, 'Error');
+      });
+    }
+  }
+
+  public setMode(mode : string){
+    this.mode = mode;
+    if(mode == 'stream'){
+      this.cameraService.setStream();
+      return;
+    }
+
+    if(mode == 'recognize'){
+      this.cameraService.setRecognitionMode();
+      return;
+    }
+
+    if(mode == 'add'){
+      return;
+    }
+  }
+
+  public addFace(){
+    this.cameraService.setRecognitionFor(this.faceName);
+    this.faceName = '';
+  }
+
+  public deleteFace(face : string, index : number){
+    this.cameraService.deletePerson(face);
+    this.faceList.splice(index, 1);
   }
 }

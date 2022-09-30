@@ -15,6 +15,7 @@ export class CameraViewerService {
   private deleteAllFacesSubject : Subject<void>;
   private faceDetectedSubject : Subject<void>;
   private currentStatusSubject : Subject<string>;
+  private personDetectedSubject : Subject<string>;
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -63,12 +64,17 @@ export class CameraViewerService {
     return this.currentStatusSubject.asObservable();
   }
 
+  public getPersonDetected() : Observable<string>{
+    return this.personDetectedSubject.asObservable();
+  }
+
   private listenToEveything() {
     this.streamVideoSubject = new Subject<SafeUrl>();
     this.addFaceSubject = new Subject<string>();
     this.deleteAllFacesSubject = new Subject<void>();
     this.faceDetectedSubject = new Subject<void>();
     this.currentStatusSubject = new Subject<string>();
+    this.personDetectedSubject = new Subject<string>();
 
     this.ws.onmessage = (message) => {
       if (message.data instanceof Blob) {
@@ -99,6 +105,13 @@ export class CameraViewerService {
         return;
       }
 
+      if(message.data.includes('DOOR OPEN FOR ')){
+        this.personDetectedSubject.next(
+          message.data.substring('DOOR OPEN FOR'.length)
+        );
+        return;
+      }
+      
       this.currentStatusSubject.next(message.data);
     }
   }
