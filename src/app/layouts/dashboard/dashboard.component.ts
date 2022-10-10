@@ -20,12 +20,10 @@ export class DashboardComponent implements OnInit {
     this.shown = false;
   }
 
-  onTitleClick(){
-    this.router.navigate(['/']);
-  }
 
-  onRegisterClick(){
-    this.router.navigate(['/register'])
+  public isOnRoute(route : string[]){
+    console.log(this.router.url);
+    return this.router.url.indexOf(route.join('/')) >= 0;
   }
 
   public toggleSidebar() : void {

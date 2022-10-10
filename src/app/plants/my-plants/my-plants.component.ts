@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
-import { CameraViewerService } from 'src/app/services/sockets/camera-viewer.service';
-import { PlantStatusService } from 'src/app/services/sockets/plant-status.service';
 
 @Component({
   selector: 'app-my-plants',
   templateUrl: './my-plants.component.html',
-  styleUrls: ['./my-plants.component.scss']
+  // styleUrls: ['./my-plants.component.scss']
 })
 export class MyPlantsComponent implements OnInit {
   public log : any[] = [];
@@ -17,7 +15,7 @@ export class MyPlantsComponent implements OnInit {
 
   constructor(
     // private plantsStatus : PlantStatusService
-    private camera : CameraViewerService,
+    // private camera : CameraViewerService,
     private toastr : ToastrService,
     ) { }
 

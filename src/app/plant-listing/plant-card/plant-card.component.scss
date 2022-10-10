@@ -86,9 +86,15 @@ mat-icon{
 }
 
 .name{
+    font-weight: bold;
     height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: x-large;
+}
+
+.spinner-container > label{
+    font-weight: 500;
+    margin-bottom: 10px;
 }

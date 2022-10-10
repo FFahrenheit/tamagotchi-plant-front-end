@@ -319,7 +319,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
         });
 
         this.cameraService.getPersonDetected().subscribe(()=> {
-          console.warn('XD');
+          this.faceList = [];
         });
 
       }, error=>{
