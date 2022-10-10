@@ -1,8 +1,29 @@
-<div class="main-wrapper container-fluid h-100" (click)="swapChart()">
-    <div class="row h-100">
+<div class="main-wrapper container-fluid h-100">
+    <div class="row mt-2 mb-1">
+        <div class="col-md-4">
+            <button class="btn btn-success px-3" (click)="goToDetails()">
+                <i class="fas fa-chevron-left pe-2"></i>
+                Detalles de planta
+                <i class="fas fa-seedling"></i>
+            </button>
+        </div>
+        <div class="col-md-4">
+            <h2 class="text-center">
+                Histórico de mediciones 
+            </h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <button class="btn btn-success px-3" (click)="swapChart()">
+                <i class="fas fa-chart-area"></i>
+                Clústers
+                <i class="fas fa-chevron-right ps-2"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md p-3 h-50">
             <div class="card">
-                <canvas id="temperaturaChar" #temperaturaChart></canvas>
+                <canvas id="temperaturaChart" #temperaturaChart></canvas>
             </div>
         </div>
         <div class="col-md p-3 h-50">

@@ -2,8 +2,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import { PlantService } from 'src/app/shared/services/plant/plant.service';
-import kmeans from 'dimas-kmeans';
-import { KmeansService } from 'src/app/shared/services/kmeans/kmeans.service';
 
 @Component({
   selector: 'app-historics-main',
@@ -33,23 +31,26 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
   humtData: any;
   humaData: any;
 
+  private idMicro : string;
+
   constructor(private plantaServ: PlantService,
     private route: ActivatedRoute,
-    private kmeanSrv: KmeansService,
     private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  swapChart() {
+  public swapChart() {
     this.route.queryParams.subscribe(params => {
       this.router.navigate(['/historics/clustering'], { queryParams: { planta_id: params['planta_id'], id_micro:params['id_micro'] } })
     });
   }
 
-  ngAfterViewInit() {
-    
+  public goToDetails(){
+    this.router.navigate(['pet', 'dashboard'], { queryParams: {id_micro: this.idMicro}});
+  }
 
+  ngAfterViewInit() {
 
     this.canvasTemp = this.temperaturaChart.nativeElement;
     this.canvasLumi = this.luminosidadChart.nativeElement;
@@ -114,6 +115,7 @@ export class HistoricsMainComponent implements OnInit, AfterViewInit {
     });
 
     this.route.queryParams.subscribe(params => {
+      this.idMicro = params['id_micro'];
       this.plantaServ.getHistorics(params['planta_id']).subscribe(historicData => {
         this.plantaServ.getPlantById(params['id_micro']).subscribe(plantData => {
           this.initializeData(historicData.mediciones, plantData);

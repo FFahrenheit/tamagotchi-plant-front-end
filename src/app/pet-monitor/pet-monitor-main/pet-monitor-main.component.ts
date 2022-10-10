@@ -30,7 +30,7 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
   humedad_ambiente = 0;
   estado = "Feliz";
 
-  tituloAnalisis = "Cargando...";
+  tituloAnalisis = "Cargando";
   cuerpoAnalisis = "Nuestra IA está analizando su planta.";
 
   spinnerDiameter = window.innerHeight / 7;
@@ -101,14 +101,16 @@ export class PetMonitorMainComponent implements OnInit, AfterViewInit {
             if(obj != 0){
               cont++;
             }
-          })
+          });
 
+          const dots = setInterval(()=> this.tituloAnalisis +=  '.', 450);
           setTimeout(() => {
+            clearInterval(dots);
             if(cont>0 && cont < 3){
-              this.tituloAnalisis = "Puedes mejorar 😃"
+              this.tituloAnalisis = "Puedes mejorar 😃";
               this.cuerpoAnalisis = this.getImprovements(signMean);
             }else if(cont >= 3){
-              this.tituloAnalisis = "Esto no se ve muy bien ☹️"
+              this.tituloAnalisis = "Esto no se ve muy bien ☹️";
               this.cuerpoAnalisis = this.getImprovements(signMean);
             }else{
               this.tituloAnalisis = "Perfecto! 🥰";

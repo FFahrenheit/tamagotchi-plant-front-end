@@ -18,7 +18,7 @@ import { InterceptorService } from './shared/services/auth/interceptor.service';
   declarations: [
     AppComponent,
     BlankComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

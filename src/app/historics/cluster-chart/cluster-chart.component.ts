@@ -15,6 +15,8 @@ export class ClusterChartComponent implements OnInit, AfterViewInit {
   clusterChart: Chart;
   clusterData;
 
+  private idMicro : string;
+
   constructor(
     private route: ActivatedRoute,
     private kmeanSrv: KmeansService,
@@ -22,6 +24,10 @@ export class ClusterChartComponent implements OnInit, AfterViewInit {
     private router: Router) { }
 
   ngOnInit(): void {
+  }
+  
+  public goToDetails(){
+    this.router.navigate(['pet', 'dashboard'], { queryParams: {id_micro: this.idMicro}});
   }
 
   swapChart() {
@@ -32,6 +38,7 @@ export class ClusterChartComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.route.queryParams.subscribe(params => {
+      this.idMicro = params['id_micro'];
       this.plantSrv.getHistorics(params['planta_id']).subscribe(recs => {
         let mediciones = recs.mediciones;
 
