@@ -1,5 +1,8 @@
-<div class="card-wrapper">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /><div class="card-wrapper">
     <div class="card">
+        <button mat-stroked-button (click)="onSelectClick()" class="row card-thumbnail-icon">
+            <span class="material-symbols-outlined"> close </span>
+        </button>
         <div class="card-body">
             <div class="row card-thumbnail">
                 <mat-icon>{{plantData.icon}}</mat-icon>

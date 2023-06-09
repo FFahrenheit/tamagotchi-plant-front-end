@@ -26,6 +26,16 @@
     justify-content: center;
     overflow: hidden;
 }
+.card-thumbnail-icon{
+    background-color: #E4E4E4;
+    height: 9%;
+    width: 20%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+}
 
 .chart-container{
     height: 70%;
@@ -80,7 +90,7 @@
 }
 
 mat-icon{
-    font-size: 100px;
+    font-size: 40px;
     width: fit-content;
     height: fit-content;
 }
